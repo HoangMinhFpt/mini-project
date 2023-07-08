@@ -5,41 +5,6 @@ import * as actions from "../../store/actions";
 import "./Header.scss";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      arrNotis: [],
-    };
-    // let database = firebase.database();
-    // this.usersRef = database.ref("AccessWarning");
-  }
-
-  // componentDidMount() {
-  //   this.usersRef.on("value", (snapshot) => {
-  //     const arrNotis = snapshot.val();
-  //     const dataArray = Object.values(arrNotis);
-
-  //     this.setState({
-  //       arrNotis: dataArray,
-  //     });
-  //   });
-
-  //   this.usersRef.on("child_added", (snapshot) => {
-  //     const newNoti = snapshot.val();
-
-  //     this.setState((prevState) => ({
-  //       arrNotis: [...prevState.arrNotis, newNoti],
-  //     }));
-  //   });
-  // }
-
-  // componentWillUnmount() {
-  //   this.usersRef.off();
-  // }
-
-  // changeLanguage = (language) => {
-  //   this.props.changeLanguageAppRedux(language);
-  // };
 
   render() {
     return (
@@ -61,7 +26,7 @@ class Header extends Component {
           <div className="header-right-content">
             <button className="btn-login">
               <Link to="/login">
-                <i className="fas fa-home"></i>
+                Đăng nhập
               </Link>
             </button>
           </div>

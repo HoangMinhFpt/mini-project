@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import Header from "../containers/Header/Header";
+import CardChangePassword from "../components/Card/CardChangePassword/CardChangePassword";
 import Footer from "../containers/Footer/Footer";
-import TextService from "../components/TextService/TextService";
 
-class Homepage extends Component {
+class ChangePassword extends Component {
   render() {
     return (
       <div>
         <Header />
-        <TextService />
+        <CardChangePassword />
         <Footer />
       </div>
     );
   }
 }
-export default Homepage;
+export default ChangePassword;

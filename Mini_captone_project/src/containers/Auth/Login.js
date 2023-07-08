@@ -21,7 +21,7 @@ class Login extends Component {
 
   redirectToSystemPage = () => {
     const { navigate } = this.props;
-    const redirectPath = "/system/dashboard";
+    const redirectPath = "/homepage";
     navigate(`${redirectPath}`);
     toast.success(<FormattedMessage id="toast.login-success" />, {
       position: "top-right",
@@ -48,22 +48,11 @@ class Login extends Component {
   };
 
   handleLogin = async () => {
-    this.setState({
-      Message: "",
-      LoginStatus: "",
-    });
     try {
       let data = await handleLoginApi(this.state.username, this.state.password);
-      if (data && data.LoginStatus !== 0) {
-        this.setState({
-          Message: data.Message,
-          LoginStatus: data.LoginStatus,
-        });
-      }
-      if (data && data.LoginStatus === 0) {
-        this.props.userLoginSuccess(data.admin);
-        this.redirectToSystemPage();
-      }
+      localStorage.setItem("setToken", data);
+      this.props.userLoginSuccess(data.admin);
+      this.redirectToSystemPage();
     } catch (error) {
       if (error.response) {
         if (error.response.data) {
@@ -98,7 +87,7 @@ class Login extends Component {
     }
   };
   render() {
-    const { intl } = this.props;
+    // const { intl } = this.props;
     return (
       <div className="login-background">
         <div className="login-container">
@@ -141,7 +130,7 @@ class Login extends Component {
                 </span>
               </div>
             </div>
-            <div className="col-12" style={{ color: "red" }}>
+            {/* <div className="col-12" style={{ color: "red" }}>
               {(() => {
                 switch (this.state.LoginStatus) {
                   case 1:
@@ -152,8 +141,8 @@ class Login extends Component {
                     return <FormattedMessage id="login.no-data" />;
                   default:
                 }
-              })()}
-            </div>
+              })()} */}
+            {/* </div> */}
             <div className="col-12">
               <button
                 className="btn-login"

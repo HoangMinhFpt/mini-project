@@ -1,0 +1,19 @@
+@import "../../styles/common.scss";
+
+.service-container {
+  width: calc(80% + 24px);
+  margin: 50px 30% 50px 10%;
+
+  .service-title-content {
+    color: $colormain;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .service-content {
+    margin: 50px 30% 50px 40%;
+    h3 {
+      color: $colormain;
+    }
+  }
+}

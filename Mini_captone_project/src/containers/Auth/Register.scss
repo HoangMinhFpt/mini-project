@@ -1,0 +1,70 @@
+@import "../../styles/common.scss";
+
+.register-background {
+  height: 100vh;
+  background: $colormain;
+
+  .register-container {
+    width: 400px;
+    border-radius: 10px;
+    background: white;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 550px;
+
+    .register-content {
+      padding: 10px;
+
+      .text-login {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        padding-top: 20px;
+      }
+
+      .register-input {
+        margin: 7px 0;
+
+        .custom-input-password {
+          position: relative;
+
+          i {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .btn-register-group {
+        .btn-register {
+          width: 30%;
+          margin: 10px 0;
+          height: 35px;
+          border-radius: 10px;
+          outline: none;
+          border: none;
+          color: white;
+          font-size: 15px;
+          background: $colormain;
+        }
+        .btn-cancel {
+          width: 30%;
+          margin: 0 0 0 152px;
+          height: 35px;
+          border-radius: 10px;
+          outline: none;
+          border: none;
+          color: white;
+          font-size: 15px;
+          background: red;
+        }
+      }
+    }
+  }
+}

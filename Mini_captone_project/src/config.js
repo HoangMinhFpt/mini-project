@@ -1,6 +1,6 @@
 const config = {
   api: {
-    API_BASE_URL: "https://localhost:44302",
+    API_BASE_URL: "https://smartcity1-001-site1.htempurl.com",
   },
 };
 

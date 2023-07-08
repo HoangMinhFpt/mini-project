@@ -7,7 +7,6 @@
   backdrop-filter: saturate(200%) blur(1.875rem);
   box-shadow: rgba(255, 255, 255, 0.9) 0rem 0rem 0.0625rem 0.0625rem inset,
     rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem;
-  color: $text-in-light;
   height: 60px;
   position: sticky;
   top: 5px;
@@ -17,9 +16,8 @@
 
   .header-content {
     display: flex;
-
     .header-left-content {
-      margin: 15px 0 0 10px;
+      margin: 15px 0 0 10%;
       display: flex;
       width: 30%;
 
@@ -35,9 +33,12 @@
       display: flex;
       margin-left: 200px;
       text-align: center;
-
       .home-content {
         margin-right: 5%;
+        color: $colormain;
+      }
+      a {
+        color: $colormain;
       }
 
       .service-content {
@@ -48,14 +49,19 @@
     .header-right-content {
       display: flex;
       font-size: 20px;
+      margin-right: 5%;
 
       .btn-login {
-        color: gray;
+        color: white !important;
         line-height: 40px;
         margin-top: 5px;
         width: 150px;
         border-radius: 20px;
-
+        border: none;
+        background-color: $colormain;
+        a {
+          color: white;
+        }
         i {
           margin-top: 50%;
           margin-left: 85%;

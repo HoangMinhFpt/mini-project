@@ -1,0 +1,46 @@
+@import "../../styles/common.scss";
+
+.footer-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  opacity: 1;
+  backdrop-filter: saturate(200%) blur(1.875rem);
+  box-shadow: rgba(255, 255, 255, 0.9) 0.0625rem 0.0625rem 0.0625rem 0.0625rem
+      inset,
+    rgba(0, 0, 0, 0.05) 1.25rem 1.25rem 1.6875rem 1.25rem;
+  color: $text-in-light;
+  height: 210px;
+  border-radius: 7px;
+  margin-top: 20px;
+  font-size: $base-size;
+
+  .footer-content {
+    margin: 15px 10% 0 10%;
+    .footer-logo-content {
+      margin: 15px 0 0 10%;
+      display: flex;
+      width: 40%;
+    }
+    .footer-up-content {
+      margin: 15px 0 0 10%;
+      display: flex;
+      width: 40%;
+    }
+    .footer-down-content {
+      margin: 15px 0 0 10%;
+      display: flex;
+      width: 40%;
+
+      .copy-right-content {
+        margin-right: 10px;
+        margin-top: 5px;
+      }
+
+      button {
+        margin-right: 10px;
+        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}

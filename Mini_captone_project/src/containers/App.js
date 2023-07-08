@@ -16,8 +16,9 @@ import Register from "./Auth/Register.js";
 import System from "../routes/System";
 import Homepage from "../views/Homepage";
 import Service from "../views/Service";
-import EditProfile from "../views/EditProfile";
+import EditProfile from "../views/ChangePassword";
 import DetailProfile from "../views/DetailProfile";
+import ChangePassword from "../views/ChangePassword";
 // import Cabinet from "../views/Cabinet";
 // import Order from "../views/Order";
 // import Notification from "../views/Notification";
@@ -58,7 +59,7 @@ class App extends Component {
                 <Route path="/register" component={Register} />
                 <Route path="/homepage" component={Homepage} />
                 <Route path="/service" component={Service} />
-                <Route path="/account/edit-profile" component={EditProfile} />
+                <Route path="/account/change-password" component={ChangePassword} />
                 <Route
                   path="/account/detail-profile"
                   component={DetailProfile}
