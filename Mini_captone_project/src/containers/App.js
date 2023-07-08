@@ -5,6 +5,8 @@ import { ConnectedRouter as Router } from "connected-react-router";
 import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.js";
 import {
   userIsAuthenticated,
   userIsNotAuthenticated,
@@ -12,7 +14,7 @@ import {
 import { path } from "../utils";
 import Home from "../routes/Home";
 import Login from "./Auth/Login.js";
-import Register from "./Auth/Register.js";
+import Register from "./Auth/Register";
 import System from "../routes/System";
 import Homepage from "../views/Homepage";
 import Service from "../views/Service";
@@ -59,7 +61,10 @@ class App extends Component {
                 <Route path="/register" component={Register} />
                 <Route path="/homepage" component={Homepage} />
                 <Route path="/service" component={Service} />
-                <Route path="/account/change-password" component={ChangePassword} />
+                <Route
+                  path="/account/change-password"
+                  component={ChangePassword}
+                />
                 <Route
                   path="/account/detail-profile"
                   component={DetailProfile}

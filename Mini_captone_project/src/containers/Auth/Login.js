@@ -15,7 +15,6 @@ class Login extends Component {
       username: "",
       password: "",
       isShowPassword: false,
-      Message: "",
     };
   }
 
@@ -164,9 +163,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    language: state.app.language,
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -20,7 +20,7 @@ class Register extends Component {
 
   redirectToSystemPage = () => {
     const { navigate } = this.props;
-    const redirectPath = "/system/dashboard";
+    const redirectPath = "/homepage";
     navigate(`${redirectPath}`);
     toast.success(<FormattedMessage id="toast.login-success" />, {
       position: "top-right",
@@ -239,4 +239,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Register));
+export default injectIntl(
+  connect(mapStateToProps, mapDispatchToProps)(Register)
+);

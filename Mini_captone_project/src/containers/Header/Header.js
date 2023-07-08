@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Account from "../../components/Account/Account";
 import * as actions from "../../store/actions";
 import "./Header.scss";
 
 class Header extends Component {
-
   render() {
+    console.log("check token:", localStorage.getItem("setToken"));
     return (
       <div className="header-container">
         <div className="header-content">
@@ -24,11 +25,15 @@ class Header extends Component {
             </div>
           </div>
           <div className="header-right-content">
-            <button className="btn-login">
-              <Link to="/login">
-                Đăng nhập
-              </Link>
-            </button>
+            {localStorage.getItem("setToken") === null ? (
+              <button className="btn-login">
+                <Link to="/login">Đăng nhập</Link>
+              </button>
+            ) : (
+              <div>
+                <Account />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -43,9 +48,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    processLogout: () => dispatch(actions.processLogout()),
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

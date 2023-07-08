@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import DetailProfile from "../views/DetailProfile";
 import EditProfile from "../views/ChangePassword";
+import ChangePassword from "../views/ChangePassword";
 class System extends Component {
   render() {
     const { systemMenuPath } = this.props;
@@ -12,6 +13,7 @@ class System extends Component {
           <Switch>
             <Route path="/account/edit-profile" component={EditProfile} />
             <Route path="/account/detail-profile" component={DetailProfile} />
+            <Route path="/account/change-password" component={ChangePassword} />
             <Route
               component={() => {
                 return <Redirect to={systemMenuPath} />;
