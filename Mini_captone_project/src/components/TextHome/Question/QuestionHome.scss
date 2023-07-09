@@ -1,0 +1,39 @@
+@import "../../../styles/common.scss";
+
+.question-container {
+  margin: 25px 10% 10px 10%;
+  .title-question {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 700;
+    color: $colormain;
+    margin-bottom: 20px;
+  }
+  .question-content {
+    .question-text {
+      display: flex;
+      justify-content: space-evenly;
+
+      .first-question {
+        width: 18%;
+      }
+      .second-question {
+        width: 18%;
+      }
+      .third-question {
+        width: 18%;
+        margin-top: 8%;
+      }
+      // .icon-question {
+      //   width: 50px;
+      //   height: 50px;
+      // }
+      .text-question {
+        text-align: center;
+        font-size: 22px;
+        color: $colormain;
+        margin-top: 20px;
+      }
+    }
+  }
+}

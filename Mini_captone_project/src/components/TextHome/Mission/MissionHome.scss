@@ -1,0 +1,24 @@
+@import "../../../styles/common.scss";
+
+.mission-container {
+  margin: 25px 10% 10px 10%;
+  .title-intruction {
+    text-align: center;
+    font-size: 50px;
+    color: $colormain;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .mission-content {
+    display: flex;
+    .mission-text {
+      .text-title {
+        font-size: 30px;
+        color: $colormain;
+      }
+      .text-mission {
+        font-size: $base-size;
+      }
+    }
+  }
+}

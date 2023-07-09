@@ -1,0 +1,29 @@
+@import "../../../styles/common.scss";
+
+.content-home-container {
+  margin-top: 20px;
+  .content-home {
+    display: flex;
+    justify-content: space-evenly;
+    .first-content {
+      width: 18%;
+    }
+    .second-content {
+      width: 18%;
+    }
+    .third-content {
+      width: 18%;
+    }
+
+    .text-content {
+      .icon-text {
+        font-size: 20px;
+        font-weight: 200;
+      }
+      .text-title {
+        font-size: 30px;
+        color: $colormain;
+      }
+    }
+  }
+}

@@ -7,31 +7,30 @@
   backdrop-filter: saturate(200%) blur(1.875rem);
   box-shadow: rgba(255, 255, 255, 0.9) 0rem 0rem 0.0625rem 0.0625rem inset,
     rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem;
-  height: 60px;
+  height: 70px;
   position: sticky;
-  top: 5px;
+  top: 0px;
   border-radius: 7px;
-  margin-bottom: 25px;
-  z-index: 5;
+  z-index: 1;
 
   .header-content {
     display: flex;
     .header-left-content {
-      margin: 15px 0 0 10%;
+      margin: 0 0 0 8%;
       display: flex;
-      width: 30%;
+      width: 25%;
 
-      i {
-        align-items: center;
-        color: gray;
-        font-size: $base-size + 7px;
+      img {
+        width: 120%;
+        height: 70px;
       }
     }
 
     .header-center-content {
-      width: 50%;
+      width: 55%;
       display: flex;
-      margin-left: 200px;
+      margin-left: 250px;
+      margin-top: 1.5%;
       text-align: center;
       .home-content {
         margin-right: 5%;
@@ -54,8 +53,9 @@
       .btn-login {
         color: white !important;
         line-height: 40px;
-        margin-top: 5px;
+        margin-top: 8%;
         width: 150px;
+        height: 50px;
         border-radius: 20px;
         border: none;
         background-color: $colormain;

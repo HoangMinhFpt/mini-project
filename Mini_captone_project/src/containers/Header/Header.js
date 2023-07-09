@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Account from "../../components/Account/Account";
-import * as actions from "../../store/actions";
 import "./Header.scss";
+import logo from "../../assets/images/logo_smart.png"
 
 class Header extends Component {
   render() {
@@ -12,8 +12,8 @@ class Header extends Component {
       <div className="header-container">
         <div className="header-content">
           <div className="header-left-content">
-            <Link to="/system/homepage">
-              <i className="fas fa-home"></i>
+            <Link to="/homepage">
+              <img src={logo} className="card-img" alt="..." />
             </Link>
           </div>
           <div className="header-center-content title">

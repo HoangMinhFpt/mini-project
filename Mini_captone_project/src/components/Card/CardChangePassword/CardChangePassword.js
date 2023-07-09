@@ -14,20 +14,6 @@ class CardChangePassword extends Component {
                             <div className="form-content">
                                 <div className="form-content">
                                     <label>
-                                        Mật khẩu hiện tại:
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        // onChange={(event) => {
-                                        //     this.handleOnChangeInput(event, "address");
-                                        // }}
-                                        value="abc"
-                                        disabled
-                                    />
-                                </div>
-                                <div className="form-content">
-                                    <label>
                                         Mật khẩu mới:
                                     </label>
                                     <input

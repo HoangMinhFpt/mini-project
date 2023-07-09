@@ -1,0 +1,46 @@
+@import "../../../styles/common.scss";
+
+.banner-container {
+  .card {
+    .card-img-overlay {
+      .logo-img-content {
+        margin-top: 15% !important;
+
+        .logo-group {
+          margin-left: 15%;
+          display: flex;
+          width: 70%;
+          .logo-content {
+            width: 15%;
+            height: 15%;
+          }
+
+          .text-content {
+            margin-top: 5%;
+
+            .btn-learnmore {
+              border-radius: 10px;
+              width: 40%;
+              height: 35px;
+              background-color: $colormain;
+              opacity: 0.9;
+              color: white;
+              border: none;
+              font-size: $base-size;
+            }
+          }
+        }
+        .card-body {
+          .card-title {
+            font-size: 50px;
+            color: $colormain;
+          }
+          .card-text {
+            font-size: 25px;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}

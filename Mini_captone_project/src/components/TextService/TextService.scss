@@ -16,4 +16,15 @@
       color: $colormain;
     }
   }
+
+  .btn-booking {
+    margin-left: 45%;
+    width: 120px;
+    height: 35px;
+    border-radius: 20px;
+    border: none;
+    background-color: $colormain;
+    color: white;
+    font-size: 20px;
+  }
 }

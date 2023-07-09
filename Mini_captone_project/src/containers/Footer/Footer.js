@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./Footer.scss"
+import logo from "../../assets/images/logo_smart.png"
 
 class Footer extends Component {
 
@@ -9,7 +10,8 @@ class Footer extends Component {
             <div className="footer-container">
                 <div className="footer-content">
                     <div className="footer-logo-content">
-                        SmartCity
+                        <img src={logo} className="card-img" alt="..." />
+                        <div className="logo-title">SmartCity</div>
                     </div>
                     <div className="footer-up-content">
                         <div className="home-content">

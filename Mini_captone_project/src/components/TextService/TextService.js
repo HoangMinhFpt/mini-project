@@ -41,6 +41,9 @@ class TextService extends Component {
                             </div>
                         </div>
                     </div>
+                    <button className="btn-booking">
+                        Đặt lịch
+                    </button>
                 </div>
             </div>
         );
