@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Account from "../../components/Account/Account";
 import "./Header.scss";
-import logo from "../../assets/images/logo_smart.png"
+import logo from "../../assets/images/logo_smart.png";
 
 class Header extends Component {
   render() {
-    console.log("check token:", localStorage.getItem("setToken"));
     return (
       <div className="header-container">
         <div className="header-content">
@@ -17,12 +16,12 @@ class Header extends Component {
             </Link>
           </div>
           <div className="header-center-content title">
-            <div className="home-content">
+            <h2 className="home-content">
               <Link to="/homepage">Home</Link>
-            </div>
-            <div className="service-content">
+            </h2>
+            <h2 className="service-content">
               <Link to="/service">Dịch vụ</Link>
-            </div>
+            </h2>
           </div>
           <div className="header-right-content">
             {localStorage.getItem("setToken") === null ? (

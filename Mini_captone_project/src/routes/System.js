@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import DetailProfile from "../views/DetailProfile";
 import EditProfile from "../views/ChangePassword";
 import ChangePassword from "../views/ChangePassword";
+import Booking from "../views/Booking";
 class System extends Component {
   render() {
     const { systemMenuPath } = this.props;
@@ -14,6 +15,8 @@ class System extends Component {
             <Route path="/account/edit-profile" component={EditProfile} />
             <Route path="/account/detail-profile" component={DetailProfile} />
             <Route path="/account/change-password" component={ChangePassword} />
+            <Route path="/account/booking" component={Booking} />
+
             <Route
               component={() => {
                 return <Redirect to={systemMenuPath} />;

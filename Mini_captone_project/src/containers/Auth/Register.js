@@ -6,6 +6,7 @@ import "./Register.scss";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { handleLoginApi } from "../../services/userService";
 import { toast } from "react-toastify";
+import bannerImg from "../../assets/images/banner.jpg";
 
 class Register extends Component {
   constructor(props) {
@@ -99,6 +100,7 @@ class Register extends Component {
   render() {
     return (
       <div className="register-background">
+        <img src={bannerImg} className="card-img" alt="..." />
         <div className="register-container">
           <div className="register-content row">
             <div className="col-12 text-login">Tạo Tài Khoản</div>

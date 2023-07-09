@@ -2,7 +2,10 @@
 
 .login-background {
     height: 100vh;
-    background: $colormain;
+
+    img {
+        height: 100vh;
+    }
 
     .login-container {
         width: 400px;

@@ -2,7 +2,10 @@
 
 .register-background {
   height: 100vh;
-  background: $colormain;
+
+  img {
+    height: 100vh;
+  }
 
   .register-container {
     width: 400px;
@@ -53,6 +56,7 @@
           font-size: 15px;
           background: $colormain;
         }
+
         .btn-cancel {
           width: 30%;
           margin: 0 0 0 152px;

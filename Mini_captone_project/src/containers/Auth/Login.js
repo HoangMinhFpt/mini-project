@@ -7,6 +7,7 @@ import { FormattedMessage, injectIntl } from "react-intl";
 import { handleLoginApi } from "../../services/userService";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import bannerImg from "../../assets/images/banner.jpg";
 
 class Login extends Component {
   constructor(props) {
@@ -89,6 +90,7 @@ class Login extends Component {
     // const { intl } = this.props;
     return (
       <div className="login-background">
+        <img src={bannerImg} className="card-img" alt="..." />
         <div className="login-container">
           <div className="login-content row">
             <div className="col-12 text-login">Đăng nhập</div>

@@ -2,7 +2,7 @@
 
 .service-container {
   width: calc(80% + 24px);
-  margin: 50px 30% 50px 10%;
+  margin: 50px 30% 1.5% 10%;
 
   .service-title-content {
     color: $colormain;
@@ -11,7 +11,8 @@
   }
 
   .service-content {
-    margin: 50px 30% 50px 40%;
+    margin: 50px 30% 20px 40%;
+
     h3 {
       color: $colormain;
     }
@@ -24,7 +25,6 @@
     border-radius: 20px;
     border: none;
     background-color: $colormain;
-    color: white;
     font-size: 20px;
   }
 }

@@ -1,0 +1,96 @@
+@import "../../styles/common.scss";
+
+.container-booking {
+    width: calc(80% + 24px);
+    margin: 50px 30% 50px 10%;
+
+    .title-content {
+        text-align: center;
+        margin-bottom: 20px;
+        color: $colormain;
+    }
+
+    .booking-content {
+        margin-left: 20%;
+
+        .img-content {
+            .img-fluid {
+                margin: 2px;
+            }
+        }
+
+        .form-content {
+            border-radius: 7px;
+            margin-top: 15px;
+            margin-left: 30%;
+            text-align: left;
+
+            label {
+                font-size: $base-size;
+            }
+
+            .form-control {
+                width: 50%;
+            }
+
+            .new-confirm-password {
+                position: relative;
+
+                i {
+                    position: absolute;
+                    left: 43%;
+                    top: 10px;
+                    cursor: pointer;
+                }
+            }
+
+            .form-confirm-password {
+                position: relative;
+
+                i {
+                    position: absolute;
+                    left: 43%;
+                    top: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .confirm-password {
+            margin-left: 30%;
+            margin-top: 10px;
+            font-size: 20px;
+
+            .success-confirm {
+                color: #198754;
+
+            }
+
+            .fail-confirm {
+                color: #dc3545;
+            }
+        }
+
+        .btn-content {
+            margin-top: 20px;
+            margin-left: 20%;
+
+            .btn-edit {
+                border-radius: 7px;
+                width: 100px;
+                height: 40px;
+                border: none;
+                margin-left: 50px;
+            }
+
+            .btn-cancel {
+                border: none;
+                border-radius: 7px;
+                width: 100px;
+                height: 40px;
+                background-color: red;
+                color: white;
+            }
+        }
+    }
+}

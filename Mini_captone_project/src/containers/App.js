@@ -18,8 +18,8 @@ import Register from "./Auth/Register";
 import System from "../routes/System";
 import Homepage from "../views/Homepage";
 import Service from "../views/Service";
-import EditProfile from "../views/ChangePassword";
 import DetailProfile from "../views/DetailProfile";
+import Booking from "../views/Booking";
 import ChangePassword from "../views/ChangePassword";
 // import Cabinet from "../views/Cabinet";
 // import Order from "../views/Order";
@@ -69,6 +69,7 @@ class App extends Component {
                   path="/account/detail-profile"
                   component={DetailProfile}
                 />
+                <Route path="/account/booking" component={Booking} />
               </Switch>
             </span>
             <ToastContainer />

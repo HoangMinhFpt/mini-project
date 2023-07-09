@@ -10,6 +10,7 @@
           margin-left: 15%;
           display: flex;
           width: 70%;
+
           .logo-content {
             width: 15%;
             height: 15%;
@@ -20,21 +21,24 @@
 
             .btn-learnmore {
               border-radius: 10px;
-              width: 40%;
-              height: 35px;
+              width: 45%;
+              height: 40px;
               background-color: $colormain;
               opacity: 0.9;
               color: white;
               border: none;
-              font-size: $base-size;
+              font-size: 22px;
+              font-weight: 500;
             }
           }
         }
+
         .card-body {
           .card-title {
             font-size: 50px;
             color: $colormain;
           }
+
           .card-text {
             font-size: 25px;
             font-weight: 700;
