@@ -5,7 +5,6 @@ import { push } from "connected-react-router";
 import { connect } from "react-redux";
 
 class TextService extends Component {
-
   redirectToLoginPage = () => {
     const { navigate } = this.props;
     const redirectPath = "/login";
@@ -19,11 +18,11 @@ class TextService extends Component {
 
   handleLogin = () => {
     if (localStorage.getItem("setToken") != null) {
-      this.redirectToBookingPage()
+      this.redirectToBookingPage();
     } else {
-      this.redirectToLoginPage()
+      this.redirectToLoginPage();
     }
-  }
+  };
 
   render() {
     return (
@@ -64,11 +63,13 @@ class TextService extends Component {
               </div>
             </div>
           </div>
-          <button className="btn-booking" onClick={() => { this.handleLogin() }}>
-            {/* <Route path="/account/booking" component={userIsAuthenticated(Booking)} /> */}
-            {/* <Link to="/account/booking" className="text-white"> */}
+          <button
+            className="btn-booking text-white"
+            onClick={() => {
+              this.handleLogin();
+            }}
+          >
             Đặt lịch
-            {/* </Link> */}
           </button>
         </div>
       </div>

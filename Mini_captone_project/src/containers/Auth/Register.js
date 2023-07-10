@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 // import * as actions from "../../store/actions";
 import "./Register.scss";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
 import { registerAccount } from "../../services/userService";
 import { toast } from "react-toastify";
 import bannerImg from "../../assets/images/banner.jpg";
@@ -19,7 +19,7 @@ class Register extends Component {
       accountPhone: "",
       accountEmail: "",
       isShowPassword: false,
-      isShowPasswordConfirm: false
+      isShowPasswordConfirm: false,
     };
   }
 
@@ -39,18 +39,6 @@ class Register extends Component {
     // });
   };
 
-  // handleOnChangeAcco = (event) => {
-  //   this.setState({
-  //     username: event.target.value,
-  //   });
-  // };
-
-  // handleOnChangePassword = (event) => {
-  //   this.setState({
-  //     password: event.target.value,
-  //   });
-  // };
-
   handleOnChangeInput = (event, id) => {
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
@@ -61,24 +49,27 @@ class Register extends Component {
 
   handleRegister = async () => {
     try {
-      let data = await registerAccount(this.state);
-      console.log("Check data res:", data);
+      let data = new FormData();
+      data.append("accountName", this.state.accountName);
+      data.append("password", this.state.password);
+      data.append("accountPhone", this.state.accountPhone);
+      data.append("accountEmail", this.state.accountEmail);
+      data.append("fullName", this.state.fullName);
+      await registerAccount(data);
+      // console.log("Check data res:", data);
       this.redirectToSystemPage();
     } catch (error) {
-      if (error.response) {
-        if (error.response.data) {
-          console.log("Check error: ", error.response.data);
-          toast.error(<FormattedMessage id="toast.login-error" />, {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
+      if (error) {
+        toast.error("Không tạo được tài khoản", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     }
   };
@@ -109,7 +100,9 @@ class Register extends Component {
                 className="form-control"
                 placeholder="Nhập tên đăng nhập"
                 value={this.state.accountName}
-                onChange={(event) => this.handleOnChangeInput(event, "accountName")}
+                onChange={(event) =>
+                  this.handleOnChangeInput(event, "accountName")
+                }
               />
             </div>
             <div className="col-12 form-group register-input">
@@ -120,7 +113,9 @@ class Register extends Component {
                   className="form-control"
                   placeholder="Nhập mật khẩu"
                   value={this.state.password}
-                  onChange={(event) => this.handleOnChangeInput(event, "password")}
+                  onChange={(event) =>
+                    this.handleOnChangeInput(event, "password")
+                  }
                 />
                 <span
                   onClick={() => {
@@ -145,7 +140,9 @@ class Register extends Component {
                   className="form-control"
                   placeholder="Xác nhận mật khẩu"
                   value={this.state.passwordConfirm}
-                  onChange={(event) => this.handleOnChangeInput(event, "passwordConfirm")}
+                  onChange={(event) =>
+                    this.handleOnChangeInput(event, "passwordConfirm")
+                  }
                 />
                 <span
                   onClick={() => {
@@ -169,7 +166,9 @@ class Register extends Component {
                 className="form-control"
                 placeholder="Nhập họ tên"
                 value={this.state.fullName}
-                onChange={(event) => this.handleOnChangeInput(event, "fullName")}
+                onChange={(event) =>
+                  this.handleOnChangeInput(event, "fullName")
+                }
               />
             </div>
             <div className="col-12 form-group register-input">
@@ -179,7 +178,9 @@ class Register extends Component {
                 className="form-control"
                 placeholder="Nhập email"
                 value={this.state.accountEmail}
-                onChange={(event) => this.handleOnChangeInput(event, "accountEmail")}
+                onChange={(event) =>
+                  this.handleOnChangeInput(event, "accountEmail")
+                }
               />
             </div>
             <div className="col-12 form-group register-input">
@@ -189,7 +190,9 @@ class Register extends Component {
                 className="form-control"
                 placeholder="Nhập số điện thoại"
                 value={this.state.accountPhone}
-                onChange={(event) => this.handleOnChangeInput(event, "accountPhone")}
+                onChange={(event) =>
+                  this.handleOnChangeInput(event, "accountPhone")
+                }
               />
             </div>
             <div className="btn-register-group">
@@ -204,9 +207,9 @@ class Register extends Component {
                 </button>
                 <button
                   className="btn-cancel"
-                // onClick={() => {
-                //   this.handleLogin();
-                // }}
+                  // onClick={() => {
+                  //   this.handleLogin();
+                  // }}
                 >
                   Hủy
                 </button>
@@ -220,8 +223,7 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -230,5 +232,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default
-  connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

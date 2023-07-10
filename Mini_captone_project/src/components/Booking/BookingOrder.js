@@ -7,20 +7,21 @@ class BookingOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      passwordNew: "",
-      passwordConfirm: "",
+      empQuantity: "",
+      serviceId: "",
+      quantity: "",
     };
   }
 
-  componentDidMount() {
-    // let user = this.props.currentUser;
-    // if (user && !_.isEmpty(user)) {
-    this.setState({
-      passwordNew: "abc",
-      passwordConfirm: "",
-    });
-    // }
-  }
+  // componentDidMount() {
+  //   // let user = this.props.currentUser;
+  //   // if (user && !_.isEmpty(user)) {
+  //   this.setState({
+  //     passwordNew: "abc",
+  //     passwordConfirm: "",
+  //   });
+  //   // }
+  // }
 
   handleOnChangeInput = (event, id) => {
     let copyState = { ...this.state };
@@ -39,27 +40,38 @@ class BookingOrder extends Component {
             <div className="form-content">
               <label>Số lượng nhân viên:</label>
               <div className="new-confirm-password">
-                <input
-                  type="text"
-                  className="form-control"
+                <select
+                  className="form-select form-control"
                   onChange={(event) => {
-                    this.handleOnChangeInput(event, "passwordConfirm");
+                    this.handleOnChangeInput(event, "empQuantity");
                   }}
-                  value={this.state.passwordConfirm}
-                />
+                  value={this.state.empQuantity}
+                >
+                  <option selected>Chọn số lượng nhân viên</option>
+                  <option value="1">1 </option>
+                  <option value="2">2 </option>
+                  <option value="3">3 </option>
+                  <option value="4">4 </option>
+                  <option value="5">5 </option>
+                </select>
+                <div className="text-content"> Nhân viên</div>
               </div>
             </div>
             <div className="form-content">
               <label>Dịch vụ:</label>
-              <div className="form-confirm-password">
-                <input
-                  type="text"
-                  className="form-control"
+              <div className="new-confirm-password">
+                <select
+                  className="form-select form-control"
                   onChange={(event) => {
-                    this.handleOnChangeInput(event, "passwordConfirm");
+                    this.handleOnChangeInput(event, "serviceId");
                   }}
-                  value={this.state.passwordConfirm}
-                />
+                  value={this.state.serviceId}
+                >
+                  <option selected>Chọn dịch vụ</option>
+                  <option value="1">Dọn dẹp vệ sinh</option>
+                  <option value="2">Vệ sinh máy lạnh</option>
+                  <option value="3">Sửa chữa</option>
+                </select>
               </div>
             </div>
             <div className="form-content">
@@ -67,13 +79,19 @@ class BookingOrder extends Component {
               <div className="new-confirm-password">
                 <select
                   className="form-select form-control"
-                  aria-label="Default select example"
+                  onChange={(event) => {
+                    this.handleOnChangeInput(event, "quantity");
+                  }}
+                  value={this.state.quantity}
                 >
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option selected>Chọn khoảng thời gian</option>
+                  <option value="1">1 giờ</option>
+                  <option value="2">2 giờ</option>
+                  <option value="3">3 giờ</option>
+                  <option value="4">4 giờ</option>
+                  <option value="5">5 giờ</option>
                 </select>
+                <div className="text-content"> Giờ</div>
               </div>
             </div>
             <div className="btn-content">
