@@ -29,6 +29,7 @@ class CardChangePassword extends Component {
     this.setState({
       ...copyState,
     });
+    console.log("check confirm:", this.state.passwordConfirm)
   };
 
   handleShowHidePasswordNew = () => {
@@ -81,9 +82,9 @@ class CardChangePassword extends Component {
                 <input
                   type={this.state.isShowPasswordConfirm ? "text" : "password"}
                   className={
-                    this.state.passwordConfirm === this.state.passwordNew
-                      ? "form-control is-valid"
-                      : "form-control is-invalid"
+                    this.state.passwordConfirm !== ""
+                      ? (this.state.passwordConfirm === this.state.passwordNew ? "form-control is-valid" : "form-control is-invalid")
+                      : "form-control"
                   }
                   onChange={(event) => {
                     this.handleOnChangeInput(event, "passwordConfirm");
@@ -106,19 +107,20 @@ class CardChangePassword extends Component {
               </div>
             </div>
             <div className="confirm-password">
-              {this.state.passwordConfirm === this.state.passwordNew ? (
-                <div className="success-confirm">
-                  <i className="fas fa-check-circle">
-                    Xác nhận mật khẩu thành công
-                  </i>
-                </div>
-              ) : (
-                <div className="fail-confirm">
-                  <i className="fas fa-exclamation-circle">
-                    Xác nhận mật khẩu thất bại
-                  </i>
-                </div>
-              )}
+              {this.state.passwordConfirm === "" ? "" :
+                (this.state.passwordConfirm === this.state.passwordNew ? (
+                  <div className="success-confirm">
+                    <i className="fas fa-check-circle">
+                      Xác nhận mật khẩu thành công
+                    </i>
+                  </div>
+                ) : (
+                  <div className="fail-confirm">
+                    <i className="fas fa-exclamation-circle">
+                      Xác nhận mật khẩu thất bại
+                    </i>
+                  </div>
+                ))}
             </div>
             <div className="btn-content">
               <button

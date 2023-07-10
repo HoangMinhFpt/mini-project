@@ -1,8 +1,30 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./TextService.scss";
+import { push } from "connected-react-router";
+import { connect } from "react-redux";
 
 class TextService extends Component {
+
+  redirectToLoginPage = () => {
+    const { navigate } = this.props;
+    const redirectPath = "/login";
+    navigate(`${redirectPath}`);
+  };
+  redirectToBookingPage = () => {
+    const { navigate } = this.props;
+    const redirectPath = "/account/booking";
+    navigate(`${redirectPath}`);
+  };
+
+  handleLogin = () => {
+    if (localStorage.getItem("setToken") != null) {
+      this.redirectToBookingPage()
+    } else {
+      this.redirectToLoginPage()
+    }
+  }
+
   render() {
     return (
       <div>
@@ -42,14 +64,25 @@ class TextService extends Component {
               </div>
             </div>
           </div>
-          <button className="btn-booking">
-            <Link to="/account/booking" className="text-white">
-              Đặt lịch
-            </Link>
+          <button className="btn-booking" onClick={() => { this.handleLogin() }}>
+            {/* <Route path="/account/booking" component={userIsAuthenticated(Booking)} /> */}
+            {/* <Link to="/account/booking" className="text-white"> */}
+            Đặt lịch
+            {/* </Link> */}
           </button>
         </div>
       </div>
     );
   }
 }
-export default TextService;
+
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigate: (path) => dispatch(push(path)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TextService);
