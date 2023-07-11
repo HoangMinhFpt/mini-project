@@ -13,10 +13,13 @@ class CardChangePassword extends Component {
       accountPhone: "",
       fullName: "",
       accountName: "",
+      oldPassword: "",
+      oldPasswordConfirm: "",
       password: "",
       passwordConfirm: "",
       isShowPasswordNew: false,
       isShowPasswordConfirm: false,
+      isShowPasswordOldConfirm: false,
     };
   }
 
@@ -47,6 +50,7 @@ class CardChangePassword extends Component {
       accountPhone: response.data.accountPhone,
       fullName: response.data.fullName,
       password: "",
+      oldPassword: response.data.password,
       accountName: response.data.accountName,
     });
   };
@@ -95,6 +99,11 @@ class CardChangePassword extends Component {
       isShowPasswordConfirm: !this.state.isShowPasswordConfirm,
     });
   };
+  handleShowHidePasswordOldConfirm = () => {
+    this.setState({
+      isShowPasswordOldConfirm: !this.state.isShowPasswordOldConfirm,
+    });
+  };
 
   render() {
     return (
@@ -102,6 +111,36 @@ class CardChangePassword extends Component {
         <h1 className="title-content">Thay đổi mật khẩu</h1>
         <div className="row g-0 form-input-content">
           <div className="col-md-9">
+            <div className="form-content">
+              <label>Mật khẩu cũ:</label>
+              <div className="form-confirm-password">
+                <input
+                  type={this.state.isShowPasswordOldConfirm ? "text" : "password"}
+                  className={
+                    this.state.oldPasswordConfirm !== ""
+                      ? (this.state.oldPasswordConfirm === this.state.oldPassword ? "form-control is-valid" : "form-control is-invalid")
+                      : "form-control"
+                  }
+                  onChange={(event) => {
+                    this.handleOnChangeInput(event, "oldPasswordConfirm");
+                  }}
+                  value={this.state.oldPasswordConfirm}
+                />
+                <span
+                  onClick={() => {
+                    this.handleShowHidePasswordConfirm();
+                  }}
+                >
+                  <i
+                    className={
+                      this.state.isShowPasswordConfirm
+                        ? "far fa-eye"
+                        : "far fa-eye-slash"
+                    }
+                  ></i>
+                </span>
+              </div>
+            </div>
             <div className="form-content">
               <label>Mật khẩu mới:</label>
               <div className="new-confirm-password">

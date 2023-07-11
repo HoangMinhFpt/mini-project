@@ -18,9 +18,6 @@ class BannerHome extends Component {
                                     <div className="card-body ">
                                         <h1 className="card-title">Smart City</h1>
                                         <p className="card-text text-white">Công ty cung cấp dịch vụ vệ sinh hàng đầu cho Vinhomes.</p>
-                                        <button className="btn-learnmore">
-                                            Tìm hiểu thêm
-                                        </button>
                                     </div>
                                 </div>
                             </div>
