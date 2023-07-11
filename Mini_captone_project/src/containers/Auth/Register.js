@@ -56,21 +56,18 @@ class Register extends Component {
       data.append("accountEmail", this.state.accountEmail);
       data.append("fullName", this.state.fullName);
       await registerAccount(data);
-      // console.log("Check data res:", data);
       this.redirectToSystemPage();
     } catch (error) {
-      if (error) {
-        toast.error("Không tạo được tài khoản", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
+      toast.error("Không tạo được tài khoản", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -207,9 +204,9 @@ class Register extends Component {
                 </button>
                 <button
                   className="btn-cancel"
-                  // onClick={() => {
-                  //   this.handleLogin();
-                  // }}
+                // onClick={() => {
+                //   this.handleLogin();
+                // }}
                 >
                   Hủy
                 </button>

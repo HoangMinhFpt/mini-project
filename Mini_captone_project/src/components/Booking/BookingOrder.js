@@ -1,27 +1,18 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./BookingOrder.scss";
+import { bookingService } from "../../services/userService";
+import { toast } from "react-toastify";
 
 class BookingOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      empQuantity: "",
+      empQuantity: 1,
       serviceId: "",
       quantity: "",
     };
   }
-
-  // componentDidMount() {
-  //   // let user = this.props.currentUser;
-  //   // if (user && !_.isEmpty(user)) {
-  //   this.setState({
-  //     passwordNew: "abc",
-  //     passwordConfirm: "",
-  //   });
-  //   // }
-  // }
 
   handleOnChangeInput = (event, id) => {
     let copyState = { ...this.state };
@@ -31,32 +22,43 @@ class BookingOrder extends Component {
     });
   };
 
+  handleBooking = async () => {
+    try {
+      let data = new FormData();
+      data.append("empQuantity", this.state.empQuantity);
+      data.append("serviceId", this.state.serviceId);
+      data.append("quantity", this.state.quantity);
+      await bookingService(data, localStorage.getItem("setToken"));
+      toast.success("Booking dịch vụ thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (error) {
+      toast.error("Booking dịch vụ không thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
+
   render() {
     return (
       <div className="container-booking">
         <h1 className="title-content">Đặt lịch</h1>
         <div className="row g-0 booking-content">
           <div className="col-md-9">
-            <div className="form-content">
-              <label>Số lượng nhân viên:</label>
-              <div className="new-confirm-password">
-                <select
-                  className="form-select form-control"
-                  onChange={(event) => {
-                    this.handleOnChangeInput(event, "empQuantity");
-                  }}
-                  value={this.state.empQuantity}
-                >
-                  <option selected>Chọn số lượng nhân viên</option>
-                  <option value="1">1 </option>
-                  <option value="2">2 </option>
-                  <option value="3">3 </option>
-                  <option value="4">4 </option>
-                  <option value="5">5 </option>
-                </select>
-                <div className="text-content"> Nhân viên</div>
-              </div>
-            </div>
             <div className="form-content">
               <label>Dịch vụ:</label>
               <div className="new-confirm-password">
@@ -100,7 +102,7 @@ class BookingOrder extends Component {
                 className="btn-edit"
                 title="Chỉnh sửa"
                 onClick={() => {
-                  this.handleSaveUserDetail();
+                  this.handleBooking();
                 }}
               >
                 Đặt lịch

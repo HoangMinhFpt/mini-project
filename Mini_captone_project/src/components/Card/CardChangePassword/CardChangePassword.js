@@ -1,27 +1,55 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import "./CardChangePassword.scss";
+import { editAccount, getAccountProfile } from "../../../services/userService";
+import { toast } from "react-toastify";
+import { push } from "connected-react-router";
+import { connect } from "react-redux";
 
 class CardChangePassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      passwordNew: "",
+      accountEmail: "",
+      accountPhone: "",
+      fullName: "",
+      accountName: "",
+      password: "",
       passwordConfirm: "",
       isShowPasswordNew: false,
       isShowPasswordConfirm: false,
     };
   }
 
-  componentDidMount() {
-    // let user = this.props.currentUser;
-    // if (user && !_.isEmpty(user)) {
-    this.setState({
-      passwordNew: "abc",
-      passwordConfirm: "",
+  redirectToSystemPage = () => {
+    const { navigate } = this.props;
+    const redirectPath = "/login";
+    navigate(`${redirectPath}`);
+    toast.success("Cập nhật thành công", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
-    // }
+  };
+
+  async componentDidMount() {
+    await this.getProfilesFromReact();
   }
+
+  getProfilesFromReact = async () => {
+    let response = await getAccountProfile(localStorage.getItem("setToken"));
+    this.setState({
+      accountEmail: response.data.accountEmail,
+      accountPhone: response.data.accountPhone,
+      fullName: response.data.fullName,
+      password: "",
+      accountName: response.data.accountName,
+    });
+  };
 
   handleOnChangeInput = (event, id) => {
     let copyState = { ...this.state };
@@ -31,6 +59,30 @@ class CardChangePassword extends Component {
     });
     console.log("check confirm:", this.state.passwordConfirm)
   };
+
+  handleChangePasswordAccount = async () => {
+    try {
+      let data = new FormData();
+      data.append("password", this.state.password);
+      data.append("fullName", this.state.fullName);
+      data.append("accountPhone", this.state.accountPhone);
+      data.append("accountEmail", this.state.accountEmail);
+      await editAccount(data, localStorage.getItem("setToken"));
+      localStorage.removeItem("setToken");
+      this.redirectToSystemPage();
+    } catch (error) {
+      toast.error("Cập nhật không thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
 
   handleShowHidePasswordNew = () => {
     this.setState({
@@ -57,9 +109,9 @@ class CardChangePassword extends Component {
                   type={this.state.isShowPasswordNew ? "text" : "password"}
                   className="form-control"
                   onChange={(event) => {
-                    this.handleOnChangeInput(event, "passwordNew");
+                    this.handleOnChangeInput(event, "password");
                   }}
-                  value={this.state.passwordNew}
+                  value={this.state.password}
                 />
                 <span
                   onClick={() => {
@@ -83,7 +135,7 @@ class CardChangePassword extends Component {
                   type={this.state.isShowPasswordConfirm ? "text" : "password"}
                   className={
                     this.state.passwordConfirm !== ""
-                      ? (this.state.passwordConfirm === this.state.passwordNew ? "form-control is-valid" : "form-control is-invalid")
+                      ? (this.state.passwordConfirm === this.state.password ? "form-control is-valid" : "form-control is-invalid")
                       : "form-control"
                   }
                   onChange={(event) => {
@@ -108,7 +160,7 @@ class CardChangePassword extends Component {
             </div>
             <div className="confirm-password">
               {this.state.passwordConfirm === "" ? "" :
-                (this.state.passwordConfirm === this.state.passwordNew ? (
+                (this.state.passwordConfirm === this.state.password ? (
                   <div className="success-confirm">
                     <i className="fas fa-check-circle">
                       Xác nhận mật khẩu thành công
@@ -128,7 +180,7 @@ class CardChangePassword extends Component {
                 className="btn-edit"
                 title="Chỉnh sửa"
                 onClick={() => {
-                  this.handleSaveUserDetail();
+                  this.handleChangePasswordAccount();
                 }}
               >
                 Chỉnh sửa
@@ -137,9 +189,9 @@ class CardChangePassword extends Component {
                 type="button"
                 className="btn-cancel offset-md-3"
                 title="Hủy"
-                onClick={() => {
-                  this.handleBanUserDetail();
-                }}
+              // onClick={() => {
+              //   this.handleBanUserDetail();
+              // }}
               >
                 Hủy bỏ
               </button>
@@ -150,4 +202,14 @@ class CardChangePassword extends Component {
     );
   }
 }
-export default CardChangePassword;
+
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigate: (path) => dispatch(push(path)),
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CardChangePassword);

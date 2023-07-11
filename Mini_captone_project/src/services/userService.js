@@ -12,10 +12,12 @@ const registerAccount = (data) => {
   return axios.post("/api/v1/Accounts/customer", data)
 }
 
+const editAccount = (data, setToken) => {
+  return axios.put("/api/v1/Accounts", data, { headers: { "Authorization": `Bearer ${setToken}` } });
+};
 
+const bookingService = (data, setToken) => {
+  return axios.post("/api/v1/Bookings", data, { headers: { "Authorization": `Bearer ${setToken}` } });
+};
 
-// const editAccountService = (accountId, inputData) => {
-//   return axios.post("/api/v1/Authentication", { username: userName, password: userPassword });
-// };
-
-export { handleLoginApi, getAccountProfile, registerAccount };
+export { handleLoginApi, getAccountProfile, registerAccount, editAccount, bookingService };

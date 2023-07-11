@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./CardProfile.scss";
-import { getAccountProfile } from "../../../services/userService";
+import { editAccount, getAccountProfile } from "../../../services/userService";
+import { toast } from "react-toastify";
 
 class CardProfile extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class CardProfile extends Component {
       accountPhone: "",
       fullName: "",
       accountName: "",
+      password: ""
     };
   }
 
@@ -20,13 +22,53 @@ class CardProfile extends Component {
   getProfilesFromReact = async () => {
     let response = await getAccountProfile(localStorage.getItem("setToken"));
     this.setState({
-      id: response.data.id,
       accountEmail: response.data.accountEmail,
       accountPhone: response.data.accountPhone,
       fullName: response.data.fullName,
+      password: response.data.password,
       accountName: response.data.accountName,
     });
   };
+
+  handleOnChangeInput = (event, id) => {
+    let copyState = { ...this.state };
+    copyState[id] = event.target.value;
+    this.setState({
+      ...copyState,
+    });
+  };
+
+  handleEditAccount = async () => {
+    try {
+      let data = new FormData();
+      data.append("password", this.state.password);
+      data.append("fullName", this.state.fullName);
+      data.append("accountPhone", this.state.accountPhone);
+      data.append("accountEmail", this.state.accountEmail);
+      await editAccount(data, localStorage.getItem("setToken"));
+      toast.success("Cập nhật thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (error) {
+      toast.error("Cập nhật không thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
 
   render() {
     return (
@@ -44,11 +86,10 @@ class CardProfile extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    // onChange={(event) => {
-                    //   this.handleOnChangeInput(event, "fullname");
-                    // }}
+                    onChange={(event) => {
+                      this.handleOnChangeInput(event, "fullName");
+                    }}
                     value={this.state.fullName}
-                    disabled
                   />
                 </div>
                 <div className="form-content">
@@ -56,11 +97,22 @@ class CardProfile extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    // onChange={(event) => {
-                    //     this.handleOnChangeInput(event, "address");
-                    // }}
+                    onChange={(event) => {
+                      this.handleOnChangeInput(event, "accountEmail");
+                    }}
                     value={this.state.accountEmail}
-                    disabled
+                  />
+                </div>
+                <div className="form-content">
+                  <label>Số điện thoại:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    onChange={(event) => {
+                      this.handleOnChangeInput(event, "accountPhone");
+                    }}
+                    value={this.state.accountPhone}
+
                   />
                 </div>
                 <div className="form-content">
@@ -68,9 +120,6 @@ class CardProfile extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    // onChange={(event) => {
-                    //     this.handleOnChangeInput(event, "address");
-                    // }}
                     value={this.state.accountName}
                     disabled
                   />
@@ -81,7 +130,7 @@ class CardProfile extends Component {
                     className="btn-edit"
                     title="Chỉnh sửa"
                     onClick={() => {
-                      this.handleSaveUserDetail();
+                      this.handleEditAccount();
                     }}
                   >
                     Chỉnh sửa
@@ -90,9 +139,9 @@ class CardProfile extends Component {
                     type="button"
                     className="btn-cancel offset-md-3"
                     title="Hủy"
-                    onClick={() => {
-                      this.handleBanUserDetail();
-                    }}
+                  // onClick={() => {
+                  //   this.handleBanUserDetail();
+                  // }}
                   >
                     Hủy bỏ
                   </button>
