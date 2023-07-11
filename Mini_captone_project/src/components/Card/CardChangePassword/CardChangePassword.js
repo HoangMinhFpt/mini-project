@@ -128,12 +128,12 @@ class CardChangePassword extends Component {
                 />
                 <span
                   onClick={() => {
-                    this.handleShowHidePasswordConfirm();
+                    this.handleShowHidePasswordOldConfirm();
                   }}
                 >
                   <i
                     className={
-                      this.state.isShowPasswordConfirm
+                      this.state.isShowPasswordOldConfirm
                         ? "far fa-eye"
                         : "far fa-eye-slash"
                     }
@@ -146,7 +146,9 @@ class CardChangePassword extends Component {
               <div className="new-confirm-password">
                 <input
                   type={this.state.isShowPasswordNew ? "text" : "password"}
-                  className="form-control"
+                  className={this.state.password !== ""
+                    ? (this.state.password === this.state.oldPasswordConfirm ? "form-control is-invalid" : "form-control is-valid")
+                    : "form-control"}
                   onChange={(event) => {
                     this.handleOnChangeInput(event, "password");
                   }}
