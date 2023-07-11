@@ -51,7 +51,7 @@ class BookingOrder extends Component {
         theme: "light",
       });
     }
-  }
+  };
 
   render() {
     return (
@@ -70,9 +70,11 @@ class BookingOrder extends Component {
                   value={this.state.serviceId}
                 >
                   <option selected>Chọn dịch vụ</option>
-                  <option value="1">Dọn dẹp vệ sinh</option>
-                  <option value="2">Vệ sinh máy lạnh</option>
-                  <option value="3">Sửa chữa</option>
+                  <option value="1">Quét dọn "Giặt quần áo"</option>
+                  <option value="2">Quét dọn "Lau dọn nhà cửa"</option>
+                  <option value="3">Sửa cửa</option>
+                  <option value="4">Vệ sinh máy lạnh "Máy giặt"</option>
+                  <option value="5">Vệ sinh máy lạnh "Máy lạnh"</option>
                 </select>
               </div>
             </div>
@@ -93,7 +95,6 @@ class BookingOrder extends Component {
                   <option value="4">4 giờ</option>
                   <option value="5">5 giờ</option>
                 </select>
-                <div className="text-content"> Giờ</div>
               </div>
             </div>
             <div className="btn-content">

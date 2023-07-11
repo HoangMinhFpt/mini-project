@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 
 class Home extends Component {
   render() {
+    localStorage.removeItem("setToken");
     let linkToRedirect = "/homepage";
-
     return <Redirect to={linkToRedirect} />;
   }
 }

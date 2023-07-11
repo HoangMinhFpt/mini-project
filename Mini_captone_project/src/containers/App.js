@@ -7,10 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
-import {
-  userIsAuthenticated,
-  userIsNotAuthenticated,
-} from "../hoc/authentication";
+import { userIsAuthenticated } from "../hoc/authentication";
 import { path } from "../utils";
 import Home from "../routes/Home";
 import Login from "./Auth/Login.js";
@@ -21,34 +18,28 @@ import Service from "../views/Service";
 import DetailProfile from "../views/DetailProfile";
 import Booking from "../views/Booking";
 import ChangePassword from "../views/ChangePassword";
-// import Cabinet from "../views/Cabinet";
-// import Order from "../views/Order";
-// import Notification from "../views/Notification";
-// import DetailUser from "../views/DetailUser";
-// import History from "../views/History";
-// import Box from "../views/Box";
 
 class App extends Component {
-  handlePersistorState = () => {
-    const { persistor } = this.props;
-    let { bootstrapped } = persistor.getState();
-    if (bootstrapped) {
-      if (this.props.onBeforeLift) {
-        Promise.resolve(this.props.onBeforeLift())
-          .then(() => this.setState({ bootstrapped: true }))
-          .catch(() => this.setState({ bootstrapped: true }));
-      } else {
-        this.setState({ bootstrapped: true });
-      }
-    }
-  };
+  // handlePersistorState = () => {
+  //   const { persistor } = this.props;
+  //   let { bootstrapped } = persistor.getState();
+  //   if (bootstrapped) {
+  //     if (this.props.onBeforeLift) {
+  //       Promise.resolve(this.props.onBeforeLift())
+  //         .then(() => this.setState({ bootstrapped: true }))
+  //         .catch(() => this.setState({ bootstrapped: true }));
+  //     } else {
+  //       this.setState({ bootstrapped: true });
+  //     }
+  //   }
+  // };
 
   render() {
     return (
       <Fragment>
         <Router history={history}>
           <div className="main-container">
-            {this.props.isLoggedIn}
+            {/* {this.props.isLoggedIn} */}
 
             <span className="content-container">
               <Switch>
@@ -83,7 +74,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     started: state.app.started,
-    isLoggedIn: state.user.isLoggedIn,
+    // isLoggedIn: state.user.isLoggedIn,
   };
 };
 
