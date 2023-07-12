@@ -19,7 +19,7 @@
     .header-left-content {
       margin: 0 0 0 8%;
       display: flex;
-      width: 25%;
+      width: 15%;
 
       img {
         width: 120%;
@@ -30,23 +30,25 @@
     .header-center-content {
       width: 55%;
       display: flex;
-      margin-left: 250px;
+      margin-left: 15%;
       margin-top: 1%;
       text-align: center;
 
-      .home-content {
-        font-weight: 600;
-        margin-right: 5%;
-        color: $colormain;
-      }
-
       a {
         color: $colormain;
+        font-weight: 700;
+      }
+
+      .home-content {
+        margin-right: 5%;
+      }
+
+      .information-content {
+        margin-left: 7%;
       }
 
       .service-content {
-        font-weight: 600;
-        margin-left: 5%;
+        margin-left: 8%;
       }
     }
 

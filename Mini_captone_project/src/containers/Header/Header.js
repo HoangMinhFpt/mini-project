@@ -19,6 +19,9 @@ class Header extends Component {
             <h2 className="home-content">
               <Link to="/homepage">Home</Link>
             </h2>
+            <h2 className="information-content">
+              <Link to="/information">Thông tin</Link>
+            </h2>
             <h2 className="service-content">
               <Link to="/service">Dịch vụ</Link>
             </h2>

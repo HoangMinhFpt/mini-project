@@ -18,6 +18,7 @@ import Service from "../views/Service";
 import DetailProfile from "../views/DetailProfile";
 import Booking from "../views/Booking";
 import ChangePassword from "../views/ChangePassword";
+import Information from "../views/Information";
 
 class App extends Component {
   // handlePersistorState = () => {
@@ -52,6 +53,7 @@ class App extends Component {
                 <Route path="/register" component={Register} />
                 <Route path="/homepage" component={Homepage} />
                 <Route path="/service" component={Service} />
+                <Route path="/information" component={Information} />
                 <Route
                   path="/account/change-password"
                   component={ChangePassword}
