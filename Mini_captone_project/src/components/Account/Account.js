@@ -39,6 +39,14 @@ class Account extends Component {
               <hr className="dropdown-divider" />
             </li>
             <li>
+              <Link className="dropdown-item " to="/history-booking">
+                <i class="fas fa-history text-info" /> Lịch sử đặt lịch
+              </Link>
+            </li>
+            <li>
+              <hr className="dropdown-divider" />
+            </li>
+            <li>
               <Link
                 className="dropdown-item"
                 to="/homepage"

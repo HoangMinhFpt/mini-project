@@ -61,7 +61,6 @@ class CardChangePassword extends Component {
     this.setState({
       ...copyState,
     });
-    console.log("check confirm:", this.state.passwordConfirm)
   };
 
   handleChangePasswordAccount = async () => {
@@ -86,7 +85,7 @@ class CardChangePassword extends Component {
         theme: "light",
       });
     }
-  }
+  };
 
   handleShowHidePasswordNew = () => {
     this.setState({
@@ -115,10 +114,14 @@ class CardChangePassword extends Component {
               <label>Mật khẩu cũ:</label>
               <div className="form-confirm-password">
                 <input
-                  type={this.state.isShowPasswordOldConfirm ? "text" : "password"}
+                  type={
+                    this.state.isShowPasswordOldConfirm ? "text" : "password"
+                  }
                   className={
                     this.state.oldPasswordConfirm !== ""
-                      ? (this.state.oldPasswordConfirm === this.state.oldPassword ? "form-control is-valid" : "form-control is-invalid")
+                      ? this.state.oldPasswordConfirm === this.state.oldPassword
+                        ? "form-control is-valid"
+                        : "form-control is-invalid"
                       : "form-control"
                   }
                   onChange={(event) => {
@@ -146,9 +149,13 @@ class CardChangePassword extends Component {
               <div className="new-confirm-password">
                 <input
                   type={this.state.isShowPasswordNew ? "text" : "password"}
-                  className={this.state.password !== ""
-                    ? (this.state.password === this.state.oldPasswordConfirm ? "form-control is-invalid" : "form-control is-valid")
-                    : "form-control"}
+                  className={
+                    this.state.password !== ""
+                      ? this.state.password === this.state.oldPasswordConfirm
+                        ? "form-control is-invalid"
+                        : "form-control is-valid"
+                      : "form-control"
+                  }
                   onChange={(event) => {
                     this.handleOnChangeInput(event, "password");
                   }}
@@ -176,7 +183,9 @@ class CardChangePassword extends Component {
                   type={this.state.isShowPasswordConfirm ? "text" : "password"}
                   className={
                     this.state.passwordConfirm !== ""
-                      ? (this.state.passwordConfirm === this.state.password ? "form-control is-valid" : "form-control is-invalid")
+                      ? this.state.passwordConfirm === this.state.password
+                        ? "form-control is-valid"
+                        : "form-control is-invalid"
                       : "form-control"
                   }
                   onChange={(event) => {
@@ -200,20 +209,21 @@ class CardChangePassword extends Component {
               </div>
             </div>
             <div className="confirm-password">
-              {this.state.passwordConfirm === "" ? "" :
-                (this.state.passwordConfirm === this.state.password ? (
-                  <div className="success-confirm">
-                    <i className="fas fa-check-circle">
-                      Xác nhận mật khẩu thành công
-                    </i>
-                  </div>
-                ) : (
-                  <div className="fail-confirm">
-                    <i className="fas fa-exclamation-circle">
-                      Xác nhận mật khẩu thất bại
-                    </i>
-                  </div>
-                ))}
+              {this.state.passwordConfirm === "" ? (
+                ""
+              ) : this.state.passwordConfirm === this.state.password ? (
+                <div className="success-confirm">
+                  <i className="fas fa-check-circle">
+                    Xác nhận mật khẩu thành công
+                  </i>
+                </div>
+              ) : (
+                <div className="fail-confirm">
+                  <i className="fas fa-exclamation-circle">
+                    Xác nhận mật khẩu thất bại
+                  </i>
+                </div>
+              )}
             </div>
             <div className="btn-content">
               <button
@@ -230,9 +240,9 @@ class CardChangePassword extends Component {
                 type="button"
                 className="btn-cancel offset-md-3"
                 title="Hủy"
-              // onClick={() => {
-              //   this.handleBanUserDetail();
-              // }}
+                // onClick={() => {
+                //   this.handleBanUserDetail();
+                // }}
               >
                 Hủy bỏ
               </button>
@@ -252,5 +262,5 @@ const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
   };
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CardChangePassword);

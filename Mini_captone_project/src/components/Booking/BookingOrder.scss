@@ -20,10 +20,11 @@
             text-align: left;
 
             label {
-                font-size: $base-size;
+                font-size: 20px;
             }
 
             .form-control {
+                font-size: $base-size;
                 width: 50%;
             }
 
@@ -36,6 +37,12 @@
                     margin-top: 2px;
                 }
             }
+        }
+
+        .text-amount {
+            margin-left: 30%;
+            margin-top: 20px;
+            font-size: 20px;
         }
 
         .btn-content {

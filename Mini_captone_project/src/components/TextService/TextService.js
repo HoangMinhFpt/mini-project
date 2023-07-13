@@ -10,6 +10,7 @@ class TextService extends Component {
     const redirectPath = "/login";
     navigate(`${redirectPath}`);
   };
+
   redirectToBookingPage = () => {
     const { navigate } = this.props;
     const redirectPath = "/account/booking";

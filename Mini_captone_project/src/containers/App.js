@@ -19,6 +19,7 @@ import DetailProfile from "../views/DetailProfile";
 import Booking from "../views/Booking";
 import ChangePassword from "../views/ChangePassword";
 import Information from "../views/Information";
+import HistoryBooking from "../views/HistoryBooking";
 
 class App extends Component {
   // handlePersistorState = () => {
@@ -40,7 +41,7 @@ class App extends Component {
       <Fragment>
         <Router history={history}>
           <div className="main-container">
-            {/* {this.props.isLoggedIn} */}
+            {this.props.isLoggedIn}
 
             <span className="content-container">
               <Switch>
@@ -54,6 +55,7 @@ class App extends Component {
                 <Route path="/homepage" component={Homepage} />
                 <Route path="/service" component={Service} />
                 <Route path="/information" component={Information} />
+                <Route path="/history-booking" component={HistoryBooking} />
                 <Route
                   path="/account/change-password"
                   component={ChangePassword}
@@ -76,7 +78,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     started: state.app.started,
-    // isLoggedIn: state.user.isLoggedIn,
+    isLoggedIn: state.user.isLoggedIn,
   };
 };
 

@@ -11,7 +11,7 @@ class CardProfile extends Component {
       accountPhone: "",
       fullName: "",
       accountName: "",
-      password: ""
+      password: "",
     };
   }
 
@@ -27,6 +27,7 @@ class CardProfile extends Component {
       fullName: response.data.fullName,
       password: response.data.password,
       accountName: response.data.accountName,
+      accountId: response.data.accountId,
     });
   };
 
@@ -68,7 +69,7 @@ class CardProfile extends Component {
         theme: "light",
       });
     }
-  }
+  };
 
   render() {
     return (
@@ -112,7 +113,6 @@ class CardProfile extends Component {
                       this.handleOnChangeInput(event, "accountPhone");
                     }}
                     value={this.state.accountPhone}
-
                   />
                 </div>
                 <div className="form-content">
@@ -139,9 +139,9 @@ class CardProfile extends Component {
                     type="button"
                     className="btn-cancel offset-md-3"
                     title="Hủy"
-                  // onClick={() => {
-                  //   this.handleBanUserDetail();
-                  // }}
+                    // onClick={() => {
+                    //   this.handleBanUserDetail();
+                    // }}
                   >
                     Hủy bỏ
                   </button>

@@ -54,6 +54,11 @@ class BookingOrder extends Component {
   };
 
   render() {
+    const formatter = new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      minimumFractionDigits: 3,
+      currency: "VND",
+    });
     return (
       <div className="container-booking">
         <h1 className="title-content">Đặt lịch</h1>
@@ -69,7 +74,9 @@ class BookingOrder extends Component {
                   }}
                   value={this.state.serviceId}
                 >
-                  <option selected>Chọn dịch vụ</option>
+                  <option selected value="0">
+                    Chọn dịch vụ
+                  </option>
                   <option value="1">Quét dọn "Giặt quần áo"</option>
                   <option value="2">Quét dọn "Lau dọn nhà cửa"</option>
                   <option value="3">Sửa cửa</option>
@@ -88,7 +95,9 @@ class BookingOrder extends Component {
                   }}
                   value={this.state.quantity}
                 >
-                  <option selected>Chọn khoảng thời gian</option>
+                  <option selected value="0">
+                    Chọn khoảng thời gian
+                  </option>
                   <option value="1">1 giờ</option>
                   <option value="2">2 giờ</option>
                   <option value="3">3 giờ</option>
@@ -96,6 +105,35 @@ class BookingOrder extends Component {
                   <option value="5">5 giờ</option>
                 </select>
               </div>
+            </div>
+            <div className="text-amount">
+              Thành tiền:
+              {(() => {
+                switch (this.state.serviceId) {
+                  case "1":
+                  case "2":
+                    return (
+                      <span>
+                        {formatter.format(this.state.quantity * 50 + 50)}
+                      </span>
+                    );
+                  case "3":
+                    return (
+                      <span>
+                        {formatter.format(this.state.quantity * 50 + 30)}
+                      </span>
+                    );
+                  case "4":
+                  case "5":
+                    return (
+                      <span>
+                        {formatter.format(this.state.quantity * 100 + 50)}
+                      </span>
+                    );
+                  default:
+                    break;
+                }
+              })()}
             </div>
             <div className="btn-content">
               <button
