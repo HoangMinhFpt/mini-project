@@ -40,7 +40,7 @@ class Account extends Component {
             </li>
             <li>
               <Link className="dropdown-item " to="/history-booking">
-                <i class="fas fa-history text-info" /> Lịch sử đặt lịch
+                <i className="fas fa-history text-info" /> Lịch sử đặt lịch
               </Link>
             </li>
             <li>

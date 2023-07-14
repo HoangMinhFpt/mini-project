@@ -74,7 +74,7 @@ class BookingOrder extends Component {
                   }}
                   value={this.state.serviceId}
                 >
-                  <option selected value="0">
+                  <option defaultValue value="0">
                     Chọn dịch vụ
                   </option>
                   <option value="1">Quét dọn "Giặt quần áo"</option>
@@ -95,7 +95,7 @@ class BookingOrder extends Component {
                   }}
                   value={this.state.quantity}
                 >
-                  <option selected value="0">
+                  <option defaultValue value="0">
                     Chọn khoảng thời gian
                   </option>
                   <option value="1">1 giờ</option>
