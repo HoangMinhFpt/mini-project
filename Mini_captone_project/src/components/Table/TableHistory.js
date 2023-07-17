@@ -4,7 +4,6 @@ import {
   cancelBookingService,
   getHistoryBookingById,
 } from "../../services/bookingService";
-import { getAccountProfile } from "../../services/userService";
 import "./TableHistory.scss";
 
 class TableHistory extends Component {
@@ -12,7 +11,6 @@ class TableHistory extends Component {
     super(props);
     this.state = {
       arrHistories: [],
-      accountId: "",
     };
   }
 
@@ -21,16 +19,12 @@ class TableHistory extends Component {
   }
 
   getHistoryById = async () => {
-    let res = await getAccountProfile(localStorage.getItem("setToken"));
-    this.setState({
-      accountId: res.data.accountId,
-    });
     let response = await getHistoryBookingById(
-      this.state.accountId,
+      this.props.data,
       localStorage.getItem("setToken")
     );
     this.setState({
-      arrHistories: response,
+      arrHistories: response.data,
     });
   };
 
@@ -40,6 +34,8 @@ class TableHistory extends Component {
   };
 
   render() {
+    const arrHistory = this.state.arrHistories
+    console.log("Check data: ", arrHistory);
     return (
       <div className="table-customers-container">
         <div className="customers-table mt-3 mx-1 ">
@@ -57,8 +53,8 @@ class TableHistory extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.arrHistories.data &&
-                this.state.arrHistories.data.map((item, index) => {
+              {this.state.arrHistories &&
+                this.state.arrHistories.map((item, index) => {
                   return (
                     <tr key={index} className="text-center">
                       <td>{item.totalAmount}</td>

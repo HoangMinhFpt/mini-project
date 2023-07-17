@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./BookingOrder.scss";
 import { bookingService } from "../../services/userService";
 import { toast } from "react-toastify";
+import { emitter } from "../../utils/emitter";
 
 class BookingOrder extends Component {
   constructor(props) {
@@ -22,6 +23,15 @@ class BookingOrder extends Component {
     });
   };
 
+  listenToEmitter = () => {
+    emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
+      this.setState({
+        serviceId: 0,
+        quantity: 0,
+      });
+    });
+  };
+
   handleBooking = async () => {
     try {
       let data = new FormData();
@@ -29,6 +39,7 @@ class BookingOrder extends Component {
       data.append("serviceId", this.state.serviceId);
       data.append("quantity", this.state.quantity);
       await bookingService(data, localStorage.getItem("setToken"));
+      emitter.emit("EVENT_CLEAR_MODAL_DATA");
       toast.success("Booking dịch vụ thành công", {
         position: "top-right",
         autoClose: 3000,
@@ -52,6 +63,7 @@ class BookingOrder extends Component {
       });
     }
   };
+
 
   render() {
     const formatter = new Intl.NumberFormat("vi-VN", {
@@ -107,7 +119,7 @@ class BookingOrder extends Component {
               </div>
             </div>
             <div className="text-amount">
-              Thành tiền:
+              Thành tiền:&nbsp;
               {(() => {
                 switch (this.state.serviceId) {
                   case "1":

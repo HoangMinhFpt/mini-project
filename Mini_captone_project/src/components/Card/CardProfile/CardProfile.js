@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./CardProfile.scss";
 import { editAccount, getAccountProfile } from "../../../services/userService";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 class CardProfile extends Component {
   constructor(props) {
@@ -77,9 +78,6 @@ class CardProfile extends Component {
         <div className="container-user-card">
           <h1 className="title-content">Thông tin khách hàng</h1>
           <div className="row g-0 form-input-content">
-            <div className="col-md-3 text-center img-content">
-              <img src={"/images/NO_IMG.png"} className="img-fluid" alt="..." />
-            </div>
             <div className="col-md-9">
               <div className="form-content">
                 <div>
@@ -139,11 +137,10 @@ class CardProfile extends Component {
                     type="button"
                     className="btn-cancel offset-md-3"
                     title="Hủy"
-                    // onClick={() => {
-                    //   this.handleBanUserDetail();
-                    // }}
                   >
-                    Hủy bỏ
+                    <Link to="/homepage" className="text-white">
+                      Hủy bỏ
+                    </Link>
                   </button>
                 </div>
               </div>

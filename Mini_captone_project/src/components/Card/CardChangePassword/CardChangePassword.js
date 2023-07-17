@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import "./CardChangePassword.scss";
 import { editAccount, getAccountProfile } from "../../../services/userService";
 import { toast } from "react-toastify";
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
+import "./CardChangePassword.scss";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 class CardChangePassword extends Component {
   constructor(props) {
@@ -25,9 +26,9 @@ class CardChangePassword extends Component {
 
   redirectToSystemPage = () => {
     const { navigate } = this.props;
-    const redirectPath = "/login";
+    const redirectPath = "/homepage";
     navigate(`${redirectPath}`);
-    toast.success("Cập nhật thành công", {
+    toast.success("Thay đổi mật khẩu thành công", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -65,16 +66,30 @@ class CardChangePassword extends Component {
 
   handleChangePasswordAccount = async () => {
     try {
-      let data = new FormData();
-      data.append("password", this.state.password);
-      data.append("fullName", this.state.fullName);
-      data.append("accountPhone", this.state.accountPhone);
-      data.append("accountEmail", this.state.accountEmail);
-      await editAccount(data, localStorage.getItem("setToken"));
-      localStorage.removeItem("setToken");
-      this.redirectToSystemPage();
+      if ((this.state.oldPassword === this.state.oldPasswordConfirm) &&
+        (this.state.oldPasswordConfirm !== this.state.password) &&
+        (this.state.password === this.state.passwordConfirm)) {
+        let data = new FormData();
+        data.append("password", this.state.password);
+        data.append("fullName", this.state.fullName);
+        data.append("accountPhone", this.state.accountPhone);
+        data.append("accountEmail", this.state.accountEmail);
+        await editAccount(data, localStorage.getItem("setToken"));
+        this.redirectToSystemPage();
+      } else {
+        toast.error("Thay đổi mật khẩu không thành công", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     } catch (error) {
-      toast.error("Cập nhật không thành công", {
+      toast.error("Thay đổi mật khẩu không thành công", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -112,7 +127,7 @@ class CardChangePassword extends Component {
           <div className="col-md-9">
             <div className="form-content">
               <label>Mật khẩu cũ:</label>
-              <div className="form-confirm-password">
+              <div className="form-confirm-old-password">
                 <input
                   type={
                     this.state.isShowPasswordOldConfirm ? "text" : "password"
@@ -142,6 +157,23 @@ class CardChangePassword extends Component {
                     }
                   ></i>
                 </span>
+                <div className="confirm-password">
+                  {this.state.oldPasswordConfirm === "" ? (
+                    ""
+                  ) : this.state.oldPasswordConfirm === this.state.oldPassword ? (
+                    <div className="success-confirm">
+                      <i className="fas fa-check-circle">
+                        Xác nhận mật khẩu cũ thành công
+                      </i>
+                    </div>
+                  ) : (
+                    <div className="fail-confirm">
+                      <i className="fas fa-exclamation-circle">
+                        Xác nhận mật khẩu cũ thất bại
+                      </i>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="form-content">
@@ -174,6 +206,23 @@ class CardChangePassword extends Component {
                     }
                   ></i>
                 </span>
+                <div className="confirm-password">
+                  {this.state.password === "" ? (
+                    ""
+                  ) : this.state.password !== this.state.oldPasswordConfirm ? (
+                    <div className="success-confirm">
+                      <i className="fas fa-check-circle">
+                        Mật khẩu mới hợp lệ
+                      </i>
+                    </div>
+                  ) : (
+                    <div className="fail-confirm">
+                      <i className="fas fa-exclamation-circle">
+                        Trùng mật khẩu cũ
+                      </i>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="form-content">
@@ -183,9 +232,10 @@ class CardChangePassword extends Component {
                   type={this.state.isShowPasswordConfirm ? "text" : "password"}
                   className={
                     this.state.passwordConfirm !== ""
-                      ? this.state.passwordConfirm === this.state.password
-                        ? "form-control is-valid"
-                        : "form-control is-invalid"
+                      ? this.state.passwordConfirm === this.state.oldPasswordConfirm
+                        ? "form-control is-invalid"
+                        : (this.state.passwordConfirm === this.state.password)
+                          ? "form-control is-valid" : "form-control is-invalid"
                       : "form-control"
                   }
                   onChange={(event) => {
@@ -206,26 +256,32 @@ class CardChangePassword extends Component {
                     }
                   ></i>
                 </span>
+                <div className="confirm-password">
+                  {this.state.passwordConfirm === "" ? (
+                    ""
+                  ) : this.state.passwordConfirm === this.state.oldPasswordConfirm ? (
+                    <div className="fail-confirm">
+                      <i className="fas fa-exclamation-circle">
+                        Trùng mật khẩu cũ
+                      </i>
+                    </div>
+                  ) : this.state.passwordConfirm === this.state.password ? (
+                    <div className="success-confirm">
+                      <i className="fas fa-check-circle">
+                        Xác nhận mật khẩu mới thành công
+                      </i>
+                    </div>
+                  ) : (
+                    <div className="fail-confirm">
+                      <i className="fas fa-exclamation-circle">
+                        Xác nhận mật khẩu mới thất bại
+                      </i>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-            <div className="confirm-password">
-              {this.state.passwordConfirm === "" ? (
-                ""
-              ) : this.state.passwordConfirm === this.state.password ? (
-                <div className="success-confirm">
-                  <i className="fas fa-check-circle">
-                    Xác nhận mật khẩu thành công
-                  </i>
-                </div>
-              ) : (
-                <div className="fail-confirm">
-                  <i className="fas fa-exclamation-circle">
-                    Xác nhận mật khẩu thất bại
-                  </i>
-                </div>
-              )}
-            </div>
-            <div className="btn-content">
+            <span className="btn-content">
               <button
                 type="button"
                 className="btn-edit"
@@ -238,15 +294,14 @@ class CardChangePassword extends Component {
               </button>
               <button
                 type="button"
-                className="btn-cancel offset-md-3"
+                className="btn-cancel offset-md-2"
                 title="Hủy"
-                // onClick={() => {
-                //   this.handleBanUserDetail();
-                // }}
               >
-                Hủy bỏ
+                <Link to="/homepage" className="text-white">
+                  Hủy bỏ
+                </Link>
               </button>
-            </div>
+            </span>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import "./Login.scss";
-import { FormattedMessage, injectIntl } from "react-intl";
+// import { FormattedMessage, injectIntl } from "react-intl";
 import { handleLoginApi } from "../../services/userService";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ class Login extends Component {
     const { navigate } = this.props;
     const redirectPath = "/homepage";
     navigate(`${redirectPath}`);
-    toast.success(<FormattedMessage id="toast.login-success" />, {
+    toast.success("Đăng nhập thành công", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -59,7 +59,7 @@ class Login extends Component {
           this.setState({
             Message: error.response.data.Message,
           });
-          toast.error(<FormattedMessage id="toast.login-error" />, {
+          toast.error("Sai thông tin đăng nhập", {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,
@@ -130,19 +130,6 @@ class Login extends Component {
                 </span>
               </div>
             </div>
-            {/* <div className="col-12" style={{ color: "red" }}>
-              {(() => {
-                switch (this.state.LoginStatus) {
-                  case 1:
-                    return <FormattedMessage id="login.password-wrong" />;
-                  case 2:
-                    return <FormattedMessage id="login.username-wrong" />;
-                  case 3:
-                    return <FormattedMessage id="login.no-data" />;
-                  default:
-                }
-              })()} */}
-            {/* </div> */}
             <div className="col-12">
               <button
                 className="btn-login"
@@ -152,7 +139,7 @@ class Login extends Component {
               >
                 Đăng nhập
               </button>
-              <div>
+              <div className="text-register">
                 Không có tài khoản? <Link to="/register">Tạo tài khoản</Link>
               </div>
             </div>
@@ -175,4 +162,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

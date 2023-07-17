@@ -17,7 +17,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    height: 550px;
+    height: 620px;
 
     .register-content {
       padding: 10px;
@@ -26,11 +26,19 @@
         text-align: center;
         font-size: 24px;
         font-weight: 600;
-        padding-top: 20px;
+        color: $colormain;
       }
 
       .register-input {
         margin: 7px 0;
+
+        label {
+          font-size: $base-size;
+        }
+
+        input {
+          font-size: $base-size;
+        }
 
         .custom-input-password {
           position: relative;
@@ -43,31 +51,42 @@
           }
         }
       }
+      .confirm-password {
+        font-size: 20px;
 
-      .btn-register-group {
-        .btn-register {
-          width: 30%;
-          margin: 10px 0;
-          height: 35px;
-          border-radius: 10px;
-          outline: none;
-          border: none;
-          color: white;
-          font-size: 15px;
-          background: $colormain;
+        .success-confirm {
+          color: #198754;
         }
 
-        .btn-cancel {
-          width: 30%;
-          margin: 0 0 0 152px;
-          height: 35px;
-          border-radius: 10px;
-          outline: none;
-          border: none;
-          color: white;
-          font-size: 15px;
-          background: red;
+        .fail-confirm {
+          color: #dc3545;
         }
+      }
+    }
+
+    .btn-register-group {
+      font-size: $base-size;
+      margin-left: 5px;
+      .btn-register {
+        width: 30%;
+        margin: 10px 0;
+        height: 35px;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        color: white;
+        background: $colormain;
+      }
+
+      .btn-cancel {
+        width: 30%;
+        margin: 0 0 0 152px;
+        height: 35px;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        color: white;
+        background: red;
       }
     }
   }

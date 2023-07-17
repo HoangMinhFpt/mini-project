@@ -7,6 +7,7 @@ import "./Register.scss";
 import { registerAccount } from "../../services/userService";
 import { toast } from "react-toastify";
 import bannerImg from "../../assets/images/banner.jpg";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 class Register extends Component {
   constructor(props) {
@@ -27,16 +28,16 @@ class Register extends Component {
     const { navigate } = this.props;
     const redirectPath = "/login";
     navigate(`${redirectPath}`);
-    // toast.success(<FormattedMessage id="toast.login-success" />, {
-    //   position: "top-right",
-    //   autoClose: 3000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "light",
-    // });
+    toast.success("Tạo tài khoản thành công", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   handleOnChangeInput = (event, id) => {
@@ -49,16 +50,30 @@ class Register extends Component {
 
   handleRegister = async () => {
     try {
-      let data = new FormData();
-      data.append("accountName", this.state.accountName);
-      data.append("password", this.state.password);
-      data.append("accountPhone", this.state.accountPhone);
-      data.append("accountEmail", this.state.accountEmail);
-      data.append("fullName", this.state.fullName);
-      await registerAccount(data);
-      this.redirectToSystemPage();
+      if (this.state.password !== "" && this.state.accountName !== "" && this.state.passwordConfirm !== "") {
+        let data = new FormData();
+        data.append("accountName", this.state.accountName);
+        data.append("password", this.state.password);
+        data.append("accountPhone", this.state.accountPhone);
+        data.append("accountEmail", this.state.accountEmail);
+        data.append("fullName", this.state.fullName);
+        await registerAccount(data);
+        this.redirectToSystemPage();
+        // console.log("Data input: ", this.state.password, this.state.accountName, this.state.passwordConfirm);
+      } else {
+        toast.error("Không để trống `Tên đăng nhập, Mật khẩu, Xác nhận mật khẩu`", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     } catch (error) {
-      toast.error("Không tạo được tài khoản", {
+      toast.error("Tạo tài khoản thất bại", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -88,10 +103,13 @@ class Register extends Component {
       <div className="register-background">
         <img src={bannerImg} className="card-img" alt="..." />
         <div className="register-container">
-          <div className="register-content row">
+          <form className="register-content row">
             <div className="col-12 text-login">Tạo Tài Khoản</div>
             <div className="col-12 form-group register-input">
-              <label>Tên đăng nhập:</label>
+              <span>
+                <label className="text-danger fs-4">*</label>
+                <label>Tên đăng nhập:</label>
+              </span>
               <input
                 type="text"
                 className="form-control"
@@ -100,15 +118,20 @@ class Register extends Component {
                 onChange={(event) =>
                   this.handleOnChangeInput(event, "accountName")
                 }
+                required
               />
             </div>
             <div className="col-12 form-group register-input">
-              <label>Mật khẩu:</label>
+              <span>
+                <label className="text-danger fs-4">*</label>
+                <label>Mật khẩu:</label>
+              </span>
               <div className="custom-input-password">
                 <input
                   type={this.state.isShowPassword ? "text" : "password"}
                   className="form-control"
                   placeholder="Nhập mật khẩu"
+                  required
                   value={this.state.password}
                   onChange={(event) =>
                     this.handleOnChangeInput(event, "password")
@@ -130,7 +153,10 @@ class Register extends Component {
               </div>
             </div>
             <div className="col-12 form-group register-input">
-              <label>Xác nhận mật khẩu:</label>
+              <span>
+                <label className="text-danger fs-4">*</label>
+                <label>Xác nhận mật khẩu:</label>
+              </span>
               <div className="custom-input-password">
                 <input
                   type={this.state.isShowPasswordConfirm ? "text" : "password"}
@@ -140,6 +166,7 @@ class Register extends Component {
                   onChange={(event) =>
                     this.handleOnChangeInput(event, "passwordConfirm")
                   }
+                  required
                 />
                 <span
                   onClick={() => {
@@ -155,6 +182,23 @@ class Register extends Component {
                   ></i>
                 </span>
               </div>
+            </div>
+            <div className="confirm-password">
+              {this.state.passwordConfirm === "" ? (
+                ""
+              ) : this.state.passwordConfirm === this.state.password ? (
+                <div className="success-confirm">
+                  <i className="fas fa-check-circle">
+                    Xác nhận mật khẩu mới thành công
+                  </i>
+                </div>
+              ) : (
+                <div className="fail-confirm">
+                  <i className="fas fa-exclamation-circle">
+                    Xác nhận mật khẩu mới thất bại
+                  </i>
+                </div>
+              )}
             </div>
             <div className="col-12 form-group register-input">
               <label>Họ tên:</label>
@@ -192,27 +236,24 @@ class Register extends Component {
                 }
               />
             </div>
-            <div className="btn-register-group">
-              <span>
-                <button
-                  className="btn-register"
-                  onClick={() => {
-                    this.handleRegister();
-                  }}
-                >
-                  Tạo tài khoản
-                </button>
-                <button
-                  className="btn-cancel"
-                // onClick={() => {
-                //   this.handleLogin();
-                // }}
-                >
-                  Hủy
-                </button>
-              </span>
-            </div>
-          </div>
+          </form>
+          <span className="btn-register-group">
+            <button
+              className="btn-register"
+              onClick={() => {
+                this.handleRegister();
+              }}
+            >
+              Tạo tài khoản
+            </button>
+            <button
+              className="btn-cancel"
+            >
+              <Link to="/login" className="text-white">
+                Trở về
+              </Link>
+            </button>
+          </span>
         </div>
       </div>
     );

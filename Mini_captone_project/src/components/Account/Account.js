@@ -2,10 +2,29 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Account.scss";
+import { getAccountProfile } from "../../services/userService";
 
 class Account extends Component {
   handleLogout = () => {
     localStorage.removeItem("setToken");
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      fullName: "",
+    };
+  }
+
+  async componentDidMount() {
+    await this.getProfilesFromReact();
+  }
+
+  getProfilesFromReact = async () => {
+    let response = await getAccountProfile(localStorage.getItem("setToken"));
+    this.setState({
+      fullName: response.data.fullName,
+    });
   };
 
   render() {
@@ -14,12 +33,12 @@ class Account extends Component {
         <div className="btn-group">
           <button
             type="button"
-            className="btn btn-secondary rounded-circle border me-4 btn-account"
+            className="btn me-1 btn-account"
             aria-expanded="false"
             aria-label="Profile"
             data-bs-toggle="dropdown"
           >
-            <i className="far fa-user"></i>
+            Hello, {this.state.fullName}
           </button>
           <ul className="dropdown-menu">
             <li>
