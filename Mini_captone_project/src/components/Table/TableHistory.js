@@ -5,6 +5,8 @@ import {
   getHistoryBookingById,
 } from "../../services/bookingService";
 import "./TableHistory.scss";
+import { getAccountProfile } from "../../services/userService";
+import { toast } from "react-toastify";
 
 class TableHistory extends Component {
   constructor(props) {
@@ -18,9 +20,17 @@ class TableHistory extends Component {
     await this.getHistoryById();
   }
 
+  getProfilesFromReact = async () => {
+    let response = await getAccountProfile(localStorage.getItem("setToken"));
+    this.setState({
+      accountId: response.data.accountId,
+    });
+  };
+
   getHistoryById = async () => {
+    await this.getProfilesFromReact()
     let response = await getHistoryBookingById(
-      this.props.data,
+      this.state.accountId,
       localStorage.getItem("setToken")
     );
     this.setState({
@@ -28,14 +38,37 @@ class TableHistory extends Component {
     });
   };
 
-  handleCancel = async (item) => {
-    await cancelBookingService(item, localStorage.getItem("setToken"));
-    await this.getHistoryById();
+  handleCancel = async (bookingId) => {
+    try {
+      await cancelBookingService(bookingId, localStorage.getItem("setToken"));
+      await this.getHistoryById();
+      toast.success("Hủy dịch vụ thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (error) {
+      toast.error("Hủy dịch vụ không thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   render() {
     const arrHistory = this.state.arrHistories
-    console.log("Check data: ", arrHistory);
+    console.log("Check data: ", this.props.data, arrHistory);
     return (
       <div className="table-customers-container">
         <div className="customers-table mt-3 mx-1 ">
@@ -57,9 +90,44 @@ class TableHistory extends Component {
                 this.state.arrHistories.map((item, index) => {
                   return (
                     <tr key={index} className="text-center">
-                      <td>{item.totalAmount}</td>
+                      <td>{(() => {
+                        switch (item.tblBookingDetail.serviceId) {
+                          case 1:
+                            return (
+                              <span>
+                                Quét dọn "Giặt quần áo"
+                              </span>
+                            );
+                          case 2:
+                            return (
+                              <span>
+                                Quét dọn "Lau dọn nhà cửa"
+                              </span>
+                            );
+                          case 3:
+                            return (
+                              <span>
+                                Sửa cửa
+                              </span>
+                            );
+                          case 4:
+                            return (
+                              <span>
+                                Vệ sinh máy lạnh "Máy giặt"
+                              </span>
+                            );
+                          case 5:
+                            return (
+                              <span>
+                                Vệ sinh máy lạnh "Máy lạnh"
+                              </span>
+                            );
+                          default:
+                            break;
+                        }
+                      })()}</td>
                       <td>{item.empQuantity}</td>
-                      <td>{item.accountId}</td>
+                      <td>{item.tblBookingDetail.quantity}</td>
                       <td>{item.totalAmount}</td>
                       <td>
                         {(() => {
