@@ -133,11 +133,7 @@ class CardProfile extends Component {
                   >
                     Chỉnh sửa
                   </button>
-                  <button
-                    type="button"
-                    className="btn-cancel offset-md-3"
-                    title="Hủy"
-                  >
+                  <button type="button" className="btn-cancel" title="Hủy">
                     <Link to="/homepage" className="text-white">
                       Hủy bỏ
                     </Link>
