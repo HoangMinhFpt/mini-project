@@ -28,7 +28,7 @@ class Login extends Component {
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
       theme: "light",
@@ -64,7 +64,7 @@ class Login extends Component {
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
-            pauseOnHover: true,
+            pauseOnHover: false,
             draggable: true,
             progress: undefined,
             theme: "light",
@@ -86,7 +86,6 @@ class Login extends Component {
     }
   };
   render() {
-    // const { intl } = this.props;
     return (
       <div className="login-background">
         <img src={bannerImg} className="card-img" alt="..." />

@@ -4,15 +4,11 @@
   margin-top: 5px;
   .btn-group {
     .btn-account {
-      width: 200px;
-      height: 70px;
-      font-size: 20px;
-      color: $colormain;
-      border: none;
-
-      i {
-        font-size: 20px;
-      }
+      width: 60px;
+      height: 60px;
+      background-color: $colormain;
+      color: white;
+      font-size: 30px;
     }
 
     .dropdown-menu {

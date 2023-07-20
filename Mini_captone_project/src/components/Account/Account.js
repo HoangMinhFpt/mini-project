@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Account.scss";
 import { getAccountProfile } from "../../services/userService";
+import { upperCase } from "lodash";
 
 class Account extends Component {
   handleLogout = () => {
@@ -12,7 +13,7 @@ class Account extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fullName: "",
+      accountName: "",
     };
   }
 
@@ -23,7 +24,7 @@ class Account extends Component {
   getProfilesFromReact = async () => {
     let response = await getAccountProfile(localStorage.getItem("setToken"));
     this.setState({
-      fullName: response.data.fullName,
+      accountName: response.data.accountName,
     });
   };
 
@@ -33,12 +34,10 @@ class Account extends Component {
         <div className="btn-group">
           <button
             type="button"
-            className="btn me-1 btn-account"
-            aria-expanded="false"
-            aria-label="Profile"
+            className="me-5 rounded-circle border btn-account text-center"
             data-bs-toggle="dropdown"
           >
-            Hello, {this.state.fullName}
+            {upperCase(this.state.accountName.charAt())}
           </button>
           <ul className="dropdown-menu">
             <li>

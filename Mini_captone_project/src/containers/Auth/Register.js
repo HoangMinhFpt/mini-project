@@ -33,7 +33,7 @@ class Register extends Component {
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
       theme: "light",
@@ -59,14 +59,13 @@ class Register extends Component {
         data.append("fullName", this.state.fullName);
         await registerAccount(data);
         this.redirectToSystemPage();
-        // console.log("Data input: ", this.state.password, this.state.accountName, this.state.passwordConfirm);
       } else {
         toast.error("Không để trống `Tên đăng nhập, Mật khẩu, Xác nhận mật khẩu`", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: false,
           draggable: true,
           progress: undefined,
           theme: "light",
@@ -78,7 +77,7 @@ class Register extends Component {
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
+        pauseOnHover: false,
         draggable: true,
         progress: undefined,
         theme: "light",

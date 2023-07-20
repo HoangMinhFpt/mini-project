@@ -47,7 +47,7 @@ class TableHistory extends Component {
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
+        pauseOnHover: false,
         draggable: true,
         progress: undefined,
         theme: "light",
@@ -58,7 +58,7 @@ class TableHistory extends Component {
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
+        pauseOnHover: false,
         draggable: true,
         progress: undefined,
         theme: "light",
@@ -68,7 +68,6 @@ class TableHistory extends Component {
 
   render() {
     const arrHistory = this.state.arrHistories
-    console.log("Check data: ", this.props.data, arrHistory);
     return (
       <div className="table-customers-container">
         <div className="customers-table mt-3 mx-1 ">
@@ -86,8 +85,8 @@ class TableHistory extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.arrHistories &&
-                this.state.arrHistories.map((item, index) => {
+              {arrHistory &&
+                arrHistory.map((item, index) => {
                   return (
                     <tr key={index} className="text-center">
                       <td>{(() => {
