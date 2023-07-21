@@ -55,7 +55,7 @@ class App extends Component {
                 <Route path="/homepage" component={Homepage} />
                 <Route path="/service" component={Service} />
                 <Route path="/information" component={Information} />
-                <Route path="/history-booking" component={HistoryBooking} />
+                <Route path="/account/history-booking" component={HistoryBooking} />
                 <Route
                   path="/account/change-password"
                   component={ChangePassword}

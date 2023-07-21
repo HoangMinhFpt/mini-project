@@ -6,9 +6,6 @@ import { getAccountProfile } from "../../services/userService";
 import { upperCase } from "lodash";
 
 class Account extends Component {
-  handleLogout = () => {
-    localStorage.removeItem("setToken");
-  };
 
   constructor(props) {
     super(props);
@@ -20,6 +17,11 @@ class Account extends Component {
   async componentDidMount() {
     await this.getProfilesFromReact();
   }
+
+  handleLogout = () => {
+    localStorage.removeItem("setToken");
+    window.location.reload(false);
+  };
 
   getProfilesFromReact = async () => {
     let response = await getAccountProfile(localStorage.getItem("setToken"));
@@ -57,7 +59,7 @@ class Account extends Component {
               <hr className="dropdown-divider" />
             </li>
             <li>
-              <Link className="dropdown-item " to="/history-booking">
+              <Link className="dropdown-item " to="account/history-booking">
                 <i className="fas fa-history text-info" /> Lịch sử đặt lịch
               </Link>
             </li>

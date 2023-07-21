@@ -5,13 +5,8 @@ import DetailProfile from "../views/DetailProfile";
 import EditProfile from "../views/ChangePassword";
 import ChangePassword from "../views/ChangePassword";
 import Booking from "../views/Booking";
-// import HistoryBooking from "../views/HistoryBooking";
+import HistoryBooking from "../views/HistoryBooking";
 class System extends Component {
-  // redirectToSystemPage = () => {
-  //   const { navigate } = this.props;
-  //   const redirectPath = "/login";
-  //   navigate(`${redirectPath}`);
-  // };
   render() {
     const { systemMenuPath } = this.props;
 
@@ -23,8 +18,7 @@ class System extends Component {
             <Route path="/account/detail-profile" component={DetailProfile} />
             <Route path="/account/change-password" component={ChangePassword} />
             <Route path="/account/booking" component={Booking} />
-            {/* <Route path="/account/history-booking" component={HistoryBooking} /> */}
-
+            <Route path="/account/history-booking" component={HistoryBooking} />
             <Route
               component={() => {
                 return <Redirect to={systemMenuPath} />;
